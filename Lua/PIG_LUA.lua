@@ -1136,11 +1136,37 @@ addHook("ThinkFrame", function(player)
 			player.pigsin = sin(player.drawangle)
 			
 			// 1: front, 2: left, 3: right, 4: back
-			player.pigcosdirections = {cos(player.mo.angle), cos(player.mo.angle + ANGLE_270), cos(player.mo.angle + ANGLE_90), cos(player.mo.angle + ANGLE_180)}
-			player.pigsindirections = {sin(player.mo.angle), sin(player.mo.angle + ANGLE_270), sin(player.mo.angle + ANGLE_90), sin(player.mo.angle + ANGLE_180)}
+			player.pigcosdirections = {cos(player.mo.angle)}--, cos(player.mo.angle + ANGLE_270), cos(player.mo.angle + ANGLE_90), cos(player.mo.angle + ANGLE_180)}
+			player.pigsindirections = {sin(player.mo.angle)}--, sin(player.mo.angle + ANGLE_270), sin(player.mo.angle + ANGLE_90), sin(player.mo.angle + ANGLE_180)}
 			
-			player.pigdrawcosdirections = {cos(player.drawangle), cos(player.drawangle + ANGLE_270), cos(player.drawangle + ANGLE_90), cos(player.drawangle + ANGLE_180)}
-			player.pigdrawsindirections = {sin(player.drawangle), sin(player.drawangle + ANGLE_270), sin(player.drawangle + ANGLE_90), sin(player.drawangle + ANGLE_180)}
+			
+			player.pigdrawcosdirections = {cos(player.drawangle)}--, cos(player.drawangle + ANGLE_270), cos(player.drawangle + ANGLE_90), cos(player.drawangle + ANGLE_180)}
+			player.pigdrawsindirections = {sin(player.drawangle)}--, sin(player.drawangle + ANGLE_270), sin(player.drawangle + ANGLE_90), sin(player.drawangle + ANGLE_180)}
+			
+			-- optimize this stuff
+			-- why do you fully calcualte four related directions my guy
+			
+			--back (p.mo.angle)
+			player.pigcosdirections[4] = player.pigcosdirections[1] * -1
+			player.pigsindirections[4] = player.pigsindirections[1] * -1
+			--left
+			player.pigcosdirections[2] = player.pigsindirections[1] * -1
+			player.pigsindirections[2] = player.pigcosdirections[1]
+			--right
+			player.pigcosdirections[3] = player.pigsindirections[1]
+			player.pigsindirections[3] = player.pigcosdirections[1] * -1
+			
+			--back (p.drawangle)
+			player.pigdrawcosdirections[4] = player.pigdrawcosdirections[1] * -1
+			player.pigdrawsindirections[4] = player.pigdrawsindirections[1] * -1
+			--left
+			player.pigdrawcosdirections[2] = player.pigdrawsindirections[1] * -1
+			player.pigdrawsindirections[2] = player.pigdrawcosdirections[1]
+			--right
+			player.pigdrawcosdirections[3] = player.pigdrawsindirections[1]
+			player.pigdrawsindirections[3] = player.pigdrawcosdirections[1] * -1
+			
+			
 			
 			player.pigspinhold = $ or 0
 			player.pigbuild = $ or 0

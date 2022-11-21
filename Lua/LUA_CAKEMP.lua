@@ -4,7 +4,7 @@ G_AddGametype({
     name = "Cake Race",
     identifier = "cakerace",
     typeoflevel = TOL_CAKERACE,
-    rules = GTR_SPECTATOR|GTR_SPAWNENEMIES,
+    rules = GTR_SPECTATORS|GTR_SPAWNENEMIES,
     intermissiontype = int_competition,
     headercolor = 201,
     description = "Compete against everyone head-to-head in a battle of speed and creativity to get 5 cakes first!"
