@@ -2,3 +2,5 @@
  Your one-stop-shop for everything SRB2 pig related
  
  Load the repository in SRB2 by loading the `loadpig.cfg` console script inside, given the repo is inside your addons folder.
+
+ Discord server at https://discord.gg/gJ4ZpApWyj
